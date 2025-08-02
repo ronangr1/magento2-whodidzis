@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
 	<router id="admin">
 		<route frontName="configrecord" id="configrecord">
-			<module before="Magento_Backend" name="Ronangr1_SystemConfigWhoDidThisLogger"/>
+			<module before="Magento_Backend" name="Ronangr1_WhoDidZis"/>
 		</route>
 	</router>
 </config>

@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Logger;
+namespace Ronangr1\WhoDidZis\Logger;
 
 use Magento\Framework\Logger\Handler\Base;
 use Monolog\Logger;

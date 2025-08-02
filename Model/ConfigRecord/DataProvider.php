@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Model\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Model\ConfigRecord;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Ronangr1\SystemConfigWhoDidThisLogger\Model\ResourceModel\ConfigRecord\CollectionFactory;
+use Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\CollectionFactory;
 
 class DataProvider extends AbstractDataProvider
 {
@@ -42,13 +42,13 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
         }
-        $data = $this->dataPersistor->get('ronangr1_systemconfigwhodidthislogger_configrecord');
+        $data = $this->dataPersistor->get('ronangr1_whodidzis_configrecord');
 
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
-            $this->dataPersistor->clear('ronangr1_systemconfigwhodidthislogger_configrecord');
+            $this->dataPersistor->clear('ronangr1_whodidzis_configrecord');
         }
 
         return $this->loadedData;

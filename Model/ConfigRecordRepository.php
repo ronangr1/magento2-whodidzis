@@ -1,25 +1,25 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Model;
+namespace Ronangr1\WhoDidZis\Model;
 
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\ConfigRecordRepositoryInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordInterfaceFactory;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordSearchResultsInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordSearchResultsInterfaceFactory;
-use Ronangr1\SystemConfigWhoDidThisLogger\Model\ResourceModel\ConfigRecord as ResourceConfigRecord;
-use Ronangr1\SystemConfigWhoDidThisLogger\Model\ResourceModel\ConfigRecord\CollectionFactory as ConfigRecordCollectionFactory;
+use Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface;
+use Ronangr1\WhoDidZis\Api\Data\ConfigRecordInterface;
+use Ronangr1\WhoDidZis\Api\Data\ConfigRecordInterfaceFactory;
+use Ronangr1\WhoDidZis\Api\Data\ConfigRecordSearchResultsInterface;
+use Ronangr1\WhoDidZis\Api\Data\ConfigRecordSearchResultsInterfaceFactory;
+use Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord as ResourceConfigRecord;
+use Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\CollectionFactory as ConfigRecordCollectionFactory;
 
 class ConfigRecordRepository implements ConfigRecordRepositoryInterface
 {
@@ -40,10 +40,12 @@ class ConfigRecordRepository implements ConfigRecordRepositoryInterface
         try {
             $this->resource->save($configRecord);
         } catch (\Exception $exception) {
-            throw new CouldNotSaveException(__(
-                'Could not save the Config Record : %1',
-                $exception->getMessage()
-            ));
+            throw new CouldNotSaveException(
+                __(
+                    'Could not save the Config Record : %1',
+                    $exception->getMessage()
+                )
+            );
         }
         return $configRecord;
     }
@@ -60,8 +62,7 @@ class ConfigRecordRepository implements ConfigRecordRepositoryInterface
 
     public function getList(
         SearchCriteriaInterface $criteria
-    ): ConfigRecordSearchResultsInterface
-    {
+    ): ConfigRecordSearchResultsInterface {
         $collection = $this->configRecordCollectionFactory->create();
 
         $this->collectionProcessor->process($criteria, $collection);
@@ -89,10 +90,12 @@ class ConfigRecordRepository implements ConfigRecordRepositoryInterface
             $this->resource->load($configRecordModel, $configRecord->getEntityId());
             $this->resource->delete($configRecordModel);
         } catch (\Exception $exception) {
-            throw new CouldNotDeleteException(__(
-                'Could not delete the Config Record: %1',
-                $exception->getMessage()
-            ));
+            throw new CouldNotDeleteException(
+                __(
+                    'Could not delete the Config Record: %1',
+                    $exception->getMessage()
+                )
+            );
         }
         return true;
     }

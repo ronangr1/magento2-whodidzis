@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Api;
+namespace Ronangr1\WhoDidZis\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordInterface;
+use Ronangr1\WhoDidZis\Api\Data\ConfigRecordInterface;
 
 interface ConfigRecordRepositoryInterface
 {

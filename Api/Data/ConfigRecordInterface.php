@@ -1,31 +1,28 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Api\Data;
+namespace Ronangr1\WhoDidZis\Api\Data;
 
 interface ConfigRecordInterface
 {
     public const ENTITY_ID = 'entity_id';
+
     public const AUTHOR = 'author';
+
     public const SCOPE = 'scope';
+
     public const PATH = 'path';
+
     public const OLD_VALUE = 'old_value';
+
     public const NEW_VALUE = 'old_value';
+
     public const RECORDED_AT = 'recorded_at';
-
-    public function getEntityId(): string;
-
-    /**
-     * Set entity_id
-     * @param string $entityId
-     * @return \Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordInterface
-     */
-    public function setEntityId(string $entityId): ConfigRecordInterface;
 
     public function getAuthor(): ?string;
 

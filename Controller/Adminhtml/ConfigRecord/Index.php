@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Controller\Adminhtml\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Controller\Adminhtml\ConfigRecord;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;

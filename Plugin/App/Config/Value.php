@@ -1,16 +1,16 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Plugin\App\Config;
+namespace Ronangr1\WhoDidZis\Plugin\App\Config;
 
 use Magento\Backend\Model\Auth\Session;
 use Psr\Log\LoggerInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Service\System\Config\Record;
+use Ronangr1\WhoDidZis\Service\System\Config\Record;
 
 class Value
 {

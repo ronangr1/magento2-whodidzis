@@ -1,11 +1,12 @@
 <?php
+
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Ui\Component\Listing\Column;
+namespace Ronangr1\WhoDidZis\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;

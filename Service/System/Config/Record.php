@@ -1,16 +1,16 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Service\System\Config;
+namespace Ronangr1\WhoDidZis\Service\System\Config;
 
 use Magento\Framework\Exception\LocalizedException;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\ConfigRecordRepositoryInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Model\ConfigRecordFactory;
+use Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface;
+use Ronangr1\WhoDidZis\Model\ConfigRecordFactory;
 
 class Record
 {
@@ -28,6 +28,7 @@ class Record
         if (empty($data)) {
             throw new LocalizedException(__("Array cannot be empty."));
         }
+
         try {
             $record = $this->configRecordFactory->create();
             $record->setData($data);

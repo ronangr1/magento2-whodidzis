@@ -1,35 +1,21 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Model;
+namespace Ronangr1\WhoDidZis\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordInterface;
+use Ronangr1\WhoDidZis\Api\Data\ConfigRecordInterface;
 
 class ConfigRecord extends AbstractModel implements ConfigRecordInterface
 {
     public function _construct(): void
     {
         $this->_init(ResourceModel\ConfigRecord::class);
-    }
-
-    public function getEntityId(): string
-    {
-        return $this->getData(self::ENTITY_ID);
-    }
-
-    /**
-     * @param string|int $entityId
-     * @return \Ronangr1\SystemConfigWhoDidThisLogger\Api\Data\ConfigRecordInterface
-     */
-    public function setEntityId($entityId): ConfigRecordInterface
-    {
-        return $this->setData(self::ENTITY_ID, $entityId);
     }
 
     public function getAuthor(): ?string

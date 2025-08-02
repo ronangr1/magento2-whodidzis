@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -9,11 +9,11 @@
 	<acl>
 		<resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Ronangr1_SystemConfigWhoDidThisLogger::ConfigRecord" title="ConfigRecord" sortOrder="10">
-					<resource id="Ronangr1_SystemConfigWhoDidThisLogger::ConfigRecord_save" title="Save ConfigRecord" sortOrder="10"/>
-					<resource id="Ronangr1_SystemConfigWhoDidThisLogger::ConfigRecord_delete" title="Delete ConfigRecord" sortOrder="20"/>
-					<resource id="Ronangr1_SystemConfigWhoDidThisLogger::ConfigRecord_update" title="Update ConfigRecord" sortOrder="30"/>
-					<resource id="Ronangr1_SystemConfigWhoDidThisLogger::ConfigRecord_view" title="View ConfigRecord" sortOrder="40"/>
+				<resource id="Ronangr1_WhoDidZis::ConfigRecord" title="ConfigRecord" sortOrder="10">
+					<resource id="Ronangr1_WhoDidZis::ConfigRecord_save" title="Save ConfigRecord" sortOrder="10"/>
+					<resource id="Ronangr1_WhoDidZis::ConfigRecord_delete" title="Delete ConfigRecord" sortOrder="20"/>
+					<resource id="Ronangr1_WhoDidZis::ConfigRecord_update" title="Update ConfigRecord" sortOrder="30"/>
+					<resource id="Ronangr1_WhoDidZis::ConfigRecord_view" title="View ConfigRecord" sortOrder="40"/>
 				</resource>
 			</resource>
 		</resources>

@@ -1,31 +1,31 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
-			<item name="provider" xsi:type="string">ronangr1_systemconfigwhodidthislogger_configrecord_listing.ronangr1_systemconfigwhodidthislogger_configrecord_listing_data_source</item>
+			<item name="provider" xsi:type="string">ronangr1_whodidzis_configrecord_listing.ronangr1_whodidzis_configrecord_listing_data_source</item>
 		</item>
 	</argument>
 	<settings>
-		<spinner>ronangr1_systemconfigwhodidthislogger_configrecord_columns</spinner>
+		<spinner>ronangr1_whodidzis_configrecord_columns</spinner>
 		<deps>
-			<dep>ronangr1_systemconfigwhodidthislogger_configrecord_listing.ronangr1_systemconfigwhodidthislogger_configrecord_listing_data_source</dep>
+			<dep>ronangr1_whodidzis_configrecord_listing.ronangr1_whodidzis_configrecord_listing_data_source</dep>
 		</deps>
 	</settings>
-	<dataSource name="ronangr1_systemconfigwhodidthislogger_configrecord_listing_data_source" component="Magento_Ui/js/grid/provider">
+	<dataSource name="ronangr1_whodidzis_configrecord_listing_data_source" component="Magento_Ui/js/grid/provider">
 		<settings>
 			<storageConfig>
 				<param name="indexField" xsi:type="string">entity_id</param>
 			</storageConfig>
 			<updateUrl path="mui/index/render"/>
 		</settings>
-		<aclResource>Ronangr1_SystemConfigWhoDidThisLogger::ConfigRecord</aclResource>
-		<dataProvider name="ronangr1_systemconfigwhodidthislogger_configrecord_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<aclResource>Ronangr1_WhoDidZis::ConfigRecord</aclResource>
+		<dataProvider name="ronangr1_whodidzis_configrecord_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
 			<settings>
 				<requestFieldName>id</requestFieldName>
 				<primaryFieldName>entity_id</primaryFieldName>
@@ -41,16 +41,16 @@
 		<filters name="listing_filters"/>
 		<paging name="listing_paging"/>
 	</listingToolbar>
-	<columns name="ronangr1_systemconfigwhodidthislogger_configrecord_columns">
+	<columns name="ronangr1_whodidzis_configrecord_columns">
 		<settings>
 			<editorConfig>
-				<param name="selectProvider" xsi:type="string">ronangr1_systemconfigwhodidthislogger_configrecord_listing.ronangr1_systemconfigwhodidthislogger_configrecord_listing.ronangr1_systemconfigwhodidthislogger_configrecord_columns.ids</param>
+				<param name="selectProvider" xsi:type="string">ronangr1_whodidzis_configrecord_listing.ronangr1_whodidzis_configrecord_listing.ronangr1_whodidzis_configrecord_columns.ids</param>
 				<param name="enabled" xsi:type="boolean">true</param>
 				<param name="indexField" xsi:type="string">entity_id</param>
 			</editorConfig>
 			<childDefaults>
 				<param name="fieldAction" xsi:type="array">
-					<item name="provider" xsi:type="string">ronangr1_systemconfigwhodidthislogger_configrecord_listing.ronangr1_systemconfigwhodidthislogger_configrecord_listing.ronangr1_systemconfigwhodidthislogger_configrecord_columns_editor</item>
+					<item name="provider" xsi:type="string">ronangr1_whodidzis_configrecord_listing.ronangr1_whodidzis_configrecord_listing.ronangr1_whodidzis_configrecord_columns_editor</item>
 					<item name="target" xsi:type="string">startEdit</item>
 					<item name="params" xsi:type="array">
 						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -153,7 +153,7 @@
 				<label translate="true">Recorded At</label>
 			</settings>
 		</column>
-        <actionsColumn name="record_actions" class="Ronangr1\SystemConfigWhoDidThisLogger\Ui\Component\Listing\Column\ConfigRecordActions">
+        <actionsColumn name="record_actions" class="Ronangr1\WhoDidZis\Ui\Component\Listing\Column\ConfigRecordActions">
             <settings>
                 <indexField>entity_id</indexField>
                 <resizeEnabled>false</resizeEnabled>

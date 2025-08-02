@@ -1,19 +1,19 @@
 <?php
 /**
- * Copyright © ronangr1. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
-namespace Ronangr1\SystemConfigWhoDidThisLogger\Controller\Adminhtml\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Controller\Adminhtml\ConfigRecord;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Api\ConfigRecordRepositoryInterface;
-use Ronangr1\SystemConfigWhoDidThisLogger\Controller\Adminhtml\ConfigRecord;
-use Ronangr1\SystemConfigWhoDidThisLogger\Service\Cache;
+use Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface;
+use Ronangr1\WhoDidZis\Controller\Adminhtml\ConfigRecord;
+use Ronangr1\WhoDidZis\Service\Cache;
 
 class Revert extends ConfigRecord
 {
@@ -34,8 +34,12 @@ class Revert extends ConfigRecord
         if ($id) {
             try {
                 $configRecord = $this->configRecordRepository->get($id);
-                if($configRecord->getEntityId()) {
-                    $this->writer->save($configRecord->getPath(), $configRecord->getOldValue(), $configRecord->getScope());
+                if ($configRecord->getEntityId()) {
+                    $this->writer->save(
+                        $configRecord->getPath(),
+                        $configRecord->getOldValue(),
+                        $configRecord->getScope()
+                    );
                     $this->configRecordRepository->delete($configRecord);
                     $this->cache->clean();
                     $this->messageManager->addSuccessMessage(__('You reverted the record.'));

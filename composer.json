@@ -1,6 +1,6 @@
 {
-    "name": "ronangr1/module-systemconfigwhodidthislogger",
-    "description": "This module allows you to record any changes made to the configuration of your Magento 2 application\n\n",
+    "name": "ronangr1/module-whodidzis",
+    "description": "This module allows you to record any changes made to the configuration of your Magento 2 application",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [
@@ -18,7 +18,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Ronangr1\\SystemConfigWhoDidThisLogger\\": ""
+            "Ronangr1\\WhoDidZis\\": ""
         }
     }
 }
