@@ -11,7 +11,7 @@ namespace Ronangr1\WhoDidZis\Controller\Adminhtml;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
 
-abstract class ConfigRecord extends Action
+abstract class Log extends Action
 {
     public function initPage(Page $resultPage): Page
     {

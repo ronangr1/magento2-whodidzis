@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Model\ResourceModel\Log;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Ronangr1\WhoDidZis\Model\ConfigRecord;
-use Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord as ConfigRecordResourceModel;
+use Ronangr1\WhoDidZis\Model\Log;
+use Ronangr1\WhoDidZis\Model\ResourceModel\Log as LogResourceModel;
 
 class Collection extends AbstractCollection
 {
@@ -19,8 +19,8 @@ class Collection extends AbstractCollection
     protected function _construct(): void
     {
         $this->_init(
-            ConfigRecord::class,
-            ConfigRecordResourceModel::class
+            Log::class,
+            LogResourceModel::class
         );
     }
 }

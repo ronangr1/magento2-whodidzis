@@ -6,16 +6,26 @@
  */
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-	<table name="system_config_record" resource="default" engine="innodb" comment="system_config_record Table">
-		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
-		<constraint xsi:type="primary" referenceId="PRIMARY">
-			<column name="entity_id"/>
-		</constraint>
-		<column name="author" nullable="false" xsi:type="varchar" comment="author" length="255"/>
-        <column name="scope" nullable="false" xsi:type="varchar" comment="scope" length="255"/>
-        <column name="path" nullable="false" xsi:type="varchar" comment="path" length="255"/>
-		<column name="old_value" nullable="false" xsi:type="text" comment="old_value"/>
-		<column name="new_value" nullable="false" xsi:type="text" comment="new_value"/>
-		<column name="recorded_at" nullable="false" xsi:type="timestamp" on_update="false" default="CURRENT_TIMESTAMP" comment="recorded_at"/>
-	</table>
+    <table name="whodidzis_log" resource="default" engine="innodb">
+        <column xsi:type="int" name="log_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Log ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="log_id"/>
+        </constraint>
+        <column name="user_id" xsi:type="int" unsigned="true" nullable="true" comment="User ID (Admin or Customer)"/>
+        <column name="actor_type" xsi:type="varchar" length="50" nullable="false" comment="Type of actor: admin, customer, api, cron, system"/>
+        <column name="actor_name" xsi:type="varchar" length="255" nullable="true" comment="Actor Name (for display)"/>
+        <column name="event_type" xsi:type="varchar" length="50" nullable="false" comment="Event Type: created, updated, deleted"/>
+        <column name="entity_type" xsi:type="varchar" length="255" nullable="false" comment="Entity Type (e.g., product, customer, sales_order)"/>
+        <column name="entity_id" xsi:type="varchar" length="255" nullable="false" comment="Entity Primary Key Value"/>
+        <column xsi:type="text" name="before_data" nullable="true" comment="Data Before Change (JSON)"/>
+        <column xsi:type="text" name="after_data" nullable="true" comment="Data After Change (JSON)"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <index referenceId="WHODIDZIS_LOG_ENTITY_TYPE_ENTITY_ID" indexType="btree">
+            <column name="entity_type"/>
+            <column name="entity_id"/>
+        </index>
+        <index referenceId="WHODIDZIS_LOG_USER_ID" indexType="btree">
+            <column name="user_id"/>
+        </index>
+    </table>
 </schema>

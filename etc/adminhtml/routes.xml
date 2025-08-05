@@ -7,7 +7,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
 	<router id="admin">
-		<route frontName="configrecord" id="configrecord">
+		<route frontName="whodidzis" id="whodidzis">
 			<module before="Magento_Backend" name="Ronangr1_WhoDidZis"/>
 		</route>
 	</router>

@@ -10,13 +10,13 @@ namespace Ronangr1\WhoDidZis\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
-class ConfigRecord extends AbstractDb
+class Log extends AbstractDb
 {
-    private const TABLE_NAME = 'system_config_record';
+    private const TABLE_NAME = 'whodidzis_log';
 
     protected function _construct(): void
     {
-        $this->_init(self::TABLE_NAME, 'entity_id');
+        $this->_init(self::TABLE_NAME, 'log_id');
     }
 }
 

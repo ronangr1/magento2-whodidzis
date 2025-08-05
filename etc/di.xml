@@ -6,37 +6,33 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Ronangr1\WhoDidZis\Logger\Handler">
+    <preference for="Ronangr1\WhoDidZis\Api\LogRepositoryInterface" type="Ronangr1\WhoDidZis\Model\LogRepository"/>
+    <preference for="Ronangr1\WhoDidZis\Api\Data\LogInterface" type="Ronangr1\WhoDidZis\Model\Log"/>
+    <preference for="Ronangr1\WhoDidZis\Api\Data\LogSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Ronangr1\WhoDidZis\Resolver\ActorResolverInterface" type="Ronangr1\WhoDidZis\Resolver\ActorResolver"/>
+    <virtualType name="Ronangr1\WhoDidZis\Model\ResourceModel\Log\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
-        </arguments>
-    </type>
-    <type name="Ronangr1\WhoDidZis\Logger\Logger">
-        <arguments>
-            <argument name="name" xsi:type="string">systemConfigChangesLogger</argument>
-            <argument name="handlers"  xsi:type="array">
-                <item name="system" xsi:type="object">Ronangr1\WhoDidZis\Logger\Handler</item>
-            </argument>
-        </arguments>
-    </type>
-    <preference for="Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface" type="Ronangr1\WhoDidZis\Model\ConfigRecordRepository"/>
-    <preference for="Ronangr1\WhoDidZis\Api\Data\ConfigRecordInterface" type="Ronangr1\WhoDidZis\Model\ConfigRecord"/>
-    <preference for="Ronangr1\WhoDidZis\Api\Data\ConfigRecordSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-    <virtualType name="Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">system_config_record</argument>
+            <argument name="mainTable" xsi:type="string">whodidzis_log</argument>
             <argument name="resourceModel" xsi:type="string">
-                Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\Collection
+                Ronangr1\WhoDidZis\Model\ResourceModel\Log\Collection
             </argument>
         </arguments>
     </virtualType>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="ronangr1_whodidzis_configrecord_listing_data_source" xsi:type="string">
-                    Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\Grid\Collection
+                <item name="ronangr1_whodidzis_Log_listing_data_source" xsi:type="string">
+                    Ronangr1\WhoDidZis\Model\ResourceModel\Log\Grid\Collection
                 </item>
             </argument>
         </arguments>
+    </type>
+    <type name="Ronangr1\WhoDidZis\Resolver\ActorResolver">
+        <arguments>
+            <argument name="backendSession" xsi:type="object">Magento\Backend\Model\Auth\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\ResourceModel\Db\AbstractDb">
+        <plugin name="ronangr1_whodidzis_log_on_save" type="Ronangr1\WhoDidZis\Plugin\ResourceModel\LogOnSavePlugin" sortOrder="10"/>
     </type>
 </config>

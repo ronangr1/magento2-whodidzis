@@ -6,19 +6,19 @@
 
 declare(strict_types=1);
 
-namespace Ronangr1\WhoDidZis\Controller\Adminhtml\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface;
-use Ronangr1\WhoDidZis\Controller\Adminhtml\ConfigRecord;
+use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
+use Ronangr1\WhoDidZis\Controller\Adminhtml\Log;
 use Ronangr1\WhoDidZis\Service\Cache;
 
-class Revert extends ConfigRecord
+class Revert extends Log
 {
     public function __construct(
-        private readonly ConfigRecordRepositoryInterface $configRecordRepository,
+        private readonly LogRepositoryInterface $configRecordRepository,
         private readonly WriterInterface $writer,
         private readonly Cache $cache,
         Context $context
@@ -33,14 +33,14 @@ class Revert extends ConfigRecord
         $id = $this->getRequest()->getParam('entity_id');
         if ($id) {
             try {
-                $configRecord = $this->configRecordRepository->get($id);
-                if ($configRecord->getEntityId()) {
+                $log = $this->configRecordRepository->get($id);
+                if ($log->getEntityId()) {
                     $this->writer->save(
-                        $configRecord->getPath(),
-                        $configRecord->getOldValue(),
-                        $configRecord->getScope()
+                        $log->getPath(),
+                        $log->getOldValue(),
+                        $log->getScope()
                     );
-                    $this->configRecordRepository->delete($configRecord);
+                    $this->configRecordRepository->delete($log);
                     $this->cache->clean();
                     $this->messageManager->addSuccessMessage(__('You reverted the record.'));
                 }

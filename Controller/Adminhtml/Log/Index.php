@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Ronangr1\WhoDidZis\Controller\Adminhtml\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;

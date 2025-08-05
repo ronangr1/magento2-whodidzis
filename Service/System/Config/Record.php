@@ -9,14 +9,14 @@ declare(strict_types=1);
 namespace Ronangr1\WhoDidZis\Service\System\Config;
 
 use Magento\Framework\Exception\LocalizedException;
-use Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface;
-use Ronangr1\WhoDidZis\Model\ConfigRecordFactory;
+use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
+use Ronangr1\WhoDidZis\Api\Data\LogInterfaceFactory;
 
 class Record
 {
     public function __construct(
-        private readonly ConfigRecordFactory $configRecordFactory,
-        private readonly ConfigRecordRepositoryInterface $configRecordRepository
+        private readonly LogInterfaceFactory $logFactory,
+        private readonly LogRepositoryInterface $logRepository
     ) {
     }
 
@@ -30,9 +30,9 @@ class Record
         }
 
         try {
-            $record = $this->configRecordFactory->create();
+            $record = $this->logFactory->create();
             $record->setData($data);
-            $this->configRecordRepository->save($record);
+            $this->logRepository->save($record);
         } catch (\Exception) {
             return false;
         }

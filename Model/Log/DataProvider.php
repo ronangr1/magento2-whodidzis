@@ -5,11 +5,11 @@
  */
 declare(strict_types=1);
 
-namespace Ronangr1\WhoDidZis\Model\ConfigRecord;
+namespace Ronangr1\WhoDidZis\Model\Log;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\CollectionFactory;
+use Ronangr1\WhoDidZis\Model\ResourceModel\Log\CollectionFactory;
 
 class DataProvider extends AbstractDataProvider
 {
