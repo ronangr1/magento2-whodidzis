@@ -14,13 +14,13 @@
 	<settings>
 		<spinner>ronangr1_whodidzis_log_columns</spinner>
 		<deps>
-			<dep>ronangr1_whodidzis_log_listing.ronangr1_whodidzis_Log_listing_data_source</dep>
+			<dep>ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing_data_source</dep>
 		</deps>
 	</settings>
 	<dataSource name="ronangr1_whodidzis_log_listing_data_source" component="Magento_Ui/js/grid/provider">
 		<settings>
 			<storageConfig>
-				<param name="indexField" xsi:type="string">entity_id</param>
+				<param name="indexField" xsi:type="string">log_id</param>
 			</storageConfig>
 			<updateUrl path="mui/index/render"/>
 		</settings>
@@ -28,7 +28,7 @@
 		<dataProvider name="ronangr1_whodidzis_log_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
 			<settings>
 				<requestFieldName>id</requestFieldName>
-				<primaryFieldName>entity_id</primaryFieldName>
+				<primaryFieldName>log_id</primaryFieldName>
 			</settings>
 		</dataProvider>
 	</dataSource>
@@ -46,7 +46,7 @@
 			<editorConfig>
 				<param name="selectProvider" xsi:type="string">ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_columns.ids</param>
 				<param name="enabled" xsi:type="boolean">true</param>
-				<param name="indexField" xsi:type="string">entity_id</param>
+				<param name="indexField" xsi:type="string">log_id</param>
 			</editorConfig>
 			<childDefaults>
 				<param name="fieldAction" xsi:type="array">
@@ -61,10 +61,10 @@
 		</settings>
 		<selectionsColumn name="ids">
 			<settings>
-				<indexField>entity_id</indexField>
+				<indexField>log_id</indexField>
 			</settings>
 		</selectionsColumn>
-		<column name="entity_id">
+		<column name="log_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
@@ -77,7 +77,7 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
-		<column name="author">
+		<column name="entity_type">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
@@ -86,34 +86,22 @@
             </argument>
 			<settings>
 				<filter>text</filter>
-				<label translate="true">Author</label>
+				<label translate="true">Entity Type</label>
 			</settings>
 		</column>
-        <column name="scope">
+        <column name="event_type">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
                 </item>
             </argument>
             <settings>
                 <filter>text</filter>
-                <label translate="true">Scope</label>
+                <label translate="true">Event Type</label>
             </settings>
         </column>
-		<column name="path">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">-
-                    <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">30</item>
-                </item>
-            </argument>
-			<settings>
-				<filter>text</filter>
-				<label translate="true">Path</label>
-			</settings>
-		</column>
-		<column name="old_value">
+		<column name="actor_type">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
@@ -124,10 +112,10 @@
             </argument>
 			<settings>
 				<filter>text</filter>
-				<label translate="true">Old Value</label>
+				<label translate="true">Actor Type</label>
 			</settings>
 		</column>
-        <column name="new_value">
+        <column name="actor_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
@@ -138,10 +126,10 @@
             </argument>
             <settings>
                 <filter>text</filter>
-                <label translate="true">New Value</label>
+                <label translate="true">Actor Type</label>
             </settings>
         </column>
-		<column name="recorded_at">
+		<column name="created_at">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
@@ -150,12 +138,12 @@
             </argument>
 			<settings>
 				<filter>text</filter>
-				<label translate="true">Recorded At</label>
+				<label translate="true">Created At</label>
 			</settings>
 		</column>
-        <actionsColumn name="record_actions" class="Ronangr1\WhoDidZis\Ui\Component\Listing\Column\ConfigRecordActions">
+        <actionsColumn name="record_actions" class="Ronangr1\WhoDidZis\Ui\Component\Listing\Column\LogActions">
             <settings>
-                <indexField>entity_id</indexField>
+                <indexField>log_id</indexField>
                 <resizeEnabled>false</resizeEnabled>
                 <resizeDefaultWidth>107</resizeDefaultWidth>
                 <fieldClass>

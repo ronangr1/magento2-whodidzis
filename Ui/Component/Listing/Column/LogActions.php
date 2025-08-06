@@ -13,7 +13,7 @@ use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class ConfigRecordActions extends Column
+class LogActions extends Column
 {
     private const URL_PATH_REVERT = 'configrecord/configrecord/revert';
 

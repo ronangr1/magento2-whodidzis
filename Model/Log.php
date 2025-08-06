@@ -47,15 +47,15 @@ class Log extends AbstractModel implements LogInterface, IdentityInterface
         return $this->setData(self::ENTITY_TYPE, $entityType);
     }
 
-    public function getEntityId(): ?int
+    public function getActorId(): ?int
     {
-        $id = $this->getData(self::ENTITY_ID);
+        $id = $this->getData(self::ACTOR_ID);
         return $id === null ? null : (int)$id;
     }
 
-    public function setEntityId($entityId): LogInterface
+    public function setActorId($actorId): LogInterface
     {
-        return $this->setData(self::ENTITY_ID, $entityId);
+        return $this->setData(self::ACTOR_ID, $actorId);
     }
 
     public function getActorType(): ?string
@@ -78,24 +78,14 @@ class Log extends AbstractModel implements LogInterface, IdentityInterface
         return $this->setData(self::ACTOR_NAME, $actorName);
     }
 
-    public function getBeforeData(): ?string
+    public function getChangesSummary(): ?string
     {
-        return $this->getData(self::BEFORE_DATA);
+        return $this->getData(self::CHANGES_SUMMARY);
     }
 
-    public function setBeforeData(string $beforeData): LogInterface
+    public function setChangesSummary(string $changesSummary): LogInterface
     {
-        return $this->setData(self::BEFORE_DATA, $beforeData);
-    }
-
-    public function getAfterData(): ?string
-    {
-        return $this->getData(self::AFTER_DATA);
-    }
-
-    public function setAfterData(string $afterData): LogInterface
-    {
-        return $this->setData(self::AFTER_DATA, $afterData);
+        return $this->setData(self::CHANGES_SUMMARY, $changesSummary);
     }
 
     public function getCreatedAt(): ?string

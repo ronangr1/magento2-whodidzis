@@ -12,19 +12,17 @@ interface LogInterface
 
     const ENTITY_TYPE  = 'entity_type';
 
-    const ENTITY_ID    = 'entity_id';
+    const ACTOR_ID    = 'actor_id';
 
     const ACTOR_TYPE   = 'actor_type';
 
     const ACTOR_NAME   = 'actor_name';
 
-    const BEFORE_DATA  = 'before_data';
-
-    const AFTER_DATA   = 'after_data';
-
     const CREATED_AT   = 'created_at';
 
     const EVENT_TYPE   = 'event_type';
+
+    const CHANGES_SUMMARY = 'changes_summary';
 
     public function getLogId(): ?int;
 
@@ -34,9 +32,9 @@ interface LogInterface
 
     public function setEntityType(string $entityType): self;
 
-    public function getEntityId(): ?int;
+    public function getActorId(): ?int;
 
-    public function setEntityId(int $entityId): self;
+    public function setActorId(int $actorId): self;
 
     public function getActorType(): ?string;
 
@@ -46,13 +44,9 @@ interface LogInterface
 
     public function setActorName(string $actorName): self;
 
-    public function getBeforeData(): ?string;
+    public function getChangesSummary(): ?string;
 
-    public function setBeforeData(string $beforeData): self;
-
-    public function getAfterData(): ?string;
-
-    public function setAfterData(string $afterData): self;
+    public function setChangesSummary(string $changesSummary): self;
 
     public function getCreatedAt(): ?string;
 

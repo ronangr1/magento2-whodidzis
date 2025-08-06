@@ -19,6 +19,14 @@
                     <config_path>whodidzis/general/enable</config_path>
                 </field>
             </group>
+            <group id="logging" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Logging</label>
+                <field id="enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log Customer Action</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>whodidzis/logging/log_customer_action</config_path>
+                </field>
+            </group>
         </section>
     </system>
 </config>

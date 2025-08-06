@@ -11,21 +11,18 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="log_id"/>
         </constraint>
-        <column name="user_id" xsi:type="int" unsigned="true" nullable="true" comment="User ID (Admin or Customer)"/>
+        <column name="actor_id" xsi:type="int" unsigned="true" nullable="true" comment="Actor ID (Admin or Customer)"/>
         <column name="actor_type" xsi:type="varchar" length="50" nullable="false" comment="Type of actor: admin, customer, api, cron, system"/>
         <column name="actor_name" xsi:type="varchar" length="255" nullable="true" comment="Actor Name (for display)"/>
         <column name="event_type" xsi:type="varchar" length="50" nullable="false" comment="Event Type: created, updated, deleted"/>
         <column name="entity_type" xsi:type="varchar" length="255" nullable="false" comment="Entity Type (e.g., product, customer, sales_order)"/>
-        <column name="entity_id" xsi:type="varchar" length="255" nullable="false" comment="Entity Primary Key Value"/>
-        <column xsi:type="text" name="before_data" nullable="true" comment="Data Before Change (JSON)"/>
-        <column xsi:type="text" name="after_data" nullable="true" comment="Data After Change (JSON)"/>
+        <column xsi:type="text" name="changes_summary" nullable="true" comment="Human-readable summary of changes"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
         <index referenceId="WHODIDZIS_LOG_ENTITY_TYPE_ENTITY_ID" indexType="btree">
             <column name="entity_type"/>
-            <column name="entity_id"/>
         </index>
         <index referenceId="WHODIDZIS_LOG_USER_ID" indexType="btree">
-            <column name="user_id"/>
+            <column name="actor_id"/>
         </index>
     </table>
 </schema>
