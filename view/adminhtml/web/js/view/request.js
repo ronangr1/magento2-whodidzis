@@ -24,7 +24,7 @@ define(['jquery', 'mage/translate'], function ($, $t) {
                     }
                 })
                 .fail(function () {
-                    reject(new Error($t('Unable to load diff.')));
+                    reject(new Error($t('Unable to load changes.')));
                 });
             });
         }
