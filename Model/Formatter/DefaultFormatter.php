@@ -19,7 +19,7 @@ class DefaultFormatter implements FormatterInterface
 
     public function format($object, array $originalData, array $newData): ?string
     {
-        $ignoredKeys = ['updated_at' => true, 'store_id' => true, 'form_key' => true];
+        $ignoredKeys = ['updated_at' => true, 'store_id' => true, 'form_key' => true, 'extension_attributes' => true, 'invoice' => true];
 
         $filteredOriginalData = array_diff_key($originalData, $ignoredKeys);
         $filteredNewData = array_diff_key($newData, $ignoredKeys);

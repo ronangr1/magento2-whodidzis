@@ -52,8 +52,8 @@
                 <item name="magento_backend_session" xsi:type="string">Magento\Backend\Model\Session</item>
                 <item name="magento_checkout_session" xsi:type="string">Magento\Checkout\Model\Session</item>
                 <item name="magento_persistent_session" xsi:type="string">Magento\Persistent\Model\Session</item>
-                <!-- Ui Admin -->
                 <item name="magento_security_session_info" xsi:type="string">Magento\Security\Model\AdminSessionInfo</item>
+                <!-- Ui Admin -->
                 <item name="magento_system_message" xsi:type="string">Magento\AdminNotification\Model\System\Message</item>
                 <item name="magento_ui_bookmark" xsi:type="string">Magento\Ui\Model\Bookmark</item>
                 <item name="magento_config" xsi:type="string">Magento\Config\Model\Config</item>
@@ -64,6 +64,7 @@
                 <!-- Indexers -->
                 <item name="magento_indexer_state" xsi:type="string">Magento\Indexer\Model\Indexer\State</item>
                 <item name="magento_mview_state" xsi:type="string">Magento\Indexer\Model\Mview\View\State</item>
+                <item name="magento_framework_flag" xsi:type="string"> Magento\Framework\Flag</item>
             </argument>
         </arguments>
     </type>

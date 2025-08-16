@@ -34,7 +34,7 @@ class Summary implements HttpGetActionInterface, CsrfAwareActionInterface
         if ($params) {
             try {
                 $log = $this->logRepository->get($params['id']);
-                $data = $log->getChangesSummary();
+                $data = json_decode($log->getChangesSummary(), true);
                 $result->setData([
                     'success' => true,
                     'data' => $data

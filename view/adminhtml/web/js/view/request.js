@@ -17,7 +17,8 @@ define(['jquery', 'mage/translate'], function ($, $t) {
                 })
                 .done(function (response) {
                     if (response.success) {
-                        self.content = response.data;
+                        console.log(response.data);
+                        self.content = JSON.stringify(response.data, null, 2);
                         resolve(self.content);
                     } else {
                         reject(new Error($t('Invalid response.')));

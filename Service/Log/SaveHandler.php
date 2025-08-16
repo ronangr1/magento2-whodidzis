@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Ronangr1\WhoDidZis\Service\Log;
 
 use Exception;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Model\AbstractModel;
 use Psr\Log\LoggerInterface;
 use Ronangr1\WhoDidZis\Api\Data\LogInterfaceFactory;
@@ -20,6 +21,7 @@ class SaveHandler
 {
 
     public function __construct(
+        private readonly ScopeConfigInterface $scopeConfig,
         private readonly ActorResolverInterface $actorResolver,
         private readonly LogRepositoryInterface $logRepository,
         private readonly LogInterfaceFactory $logFactory,
@@ -32,16 +34,23 @@ class SaveHandler
 
     public function handle(AbstractModel $object, ?array $originalData, array $newData, bool $isObjectNew): void
     {
-        if (!$this->logService->hasChanges($originalData, $newData, $isObjectNew)) {
+        $isActive = $this->scopeConfig->isSetFlag('whodidzis/general/enable');
+
+        if(!$isActive) {
             return;
         }
 
         $entityType = get_class($object);
+
         if (str_contains($entityType, 'Interceptor')) {
             $entityType = get_parent_class($entityType);
         }
 
         if (in_array($entityType, $this->deniedEntityTypes)) {
+            return;
+        }
+
+        if (!$this->logService->hasChanges($originalData, $newData, $isObjectNew)) {
             return;
         }
 
