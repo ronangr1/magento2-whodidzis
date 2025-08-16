@@ -126,7 +126,7 @@
             </argument>
             <settings>
                 <filter>text</filter>
-                <label translate="true">Actor Type</label>
+                <label translate="true">Actor Name</label>
             </settings>
         </column>
 		<column name="created_at">
@@ -141,14 +141,20 @@
 				<label translate="true">Created At</label>
 			</settings>
 		</column>
-        <actionsColumn name="record_actions" class="Ronangr1\WhoDidZis\Ui\Component\Listing\Column\LogActions">
+        <actionsColumn name="log_actions"
+                       class="Ronangr1\WhoDidZis\Ui\Component\Listing\Column\LogActions"
+                       component="Ronangr1_WhoDidZis/js/grid/columns/changes-actions"
+        >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="diffUrl" xsi:type="string">whodidzis/log/summary</item>
+                </item>
+            </argument>
             <settings>
                 <indexField>log_id</indexField>
                 <resizeEnabled>false</resizeEnabled>
                 <resizeDefaultWidth>107</resizeDefaultWidth>
-                <fieldClass>
-                    <class name="revert-action">true</class>
-                </fieldClass>
+                <bodyTmpl>ui/grid/cells/actions</bodyTmpl>
             </settings>
         </actionsColumn>
 	</columns>

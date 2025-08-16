@@ -65,16 +65,14 @@
                 <item name="magento_indexer_state" xsi:type="string">Magento\Indexer\Model\Indexer\State</item>
                 <item name="magento_mview_state" xsi:type="string">Magento\Indexer\Model\Mview\View\State</item>
             </argument>
-            <argument name="contextualDeniedEntityTypes" xsi:type="array">
-                <item name="magento_config_backend_serialized" xsi:type="string">Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</item>
-                <item name="magento_config_data_collection" xsi:type="string">Magento\Config\Model\ResourceModel\Config\Data\Collection</item>
-            </argument>
         </arguments>
     </type>
     <type name="Ronangr1\WhoDidZis\Service\Log\FormatterHandler">
         <arguments>
             <argument name="formatters" xsi:type="array">
                 <item name="Magento\Catalog\Model\Product" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
+                <item name="Magento\Catalog\Model\Category" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
+                <item name="Magento\Customer\Model\Customer" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
                 <item name="default" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\DefaultFormatter</item>
             </argument>
         </arguments>

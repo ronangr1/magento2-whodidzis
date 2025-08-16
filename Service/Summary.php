@@ -5,9 +5,9 @@
  */
 declare(strict_types=1);
 
-namespace Ronangr1\WhoDidZis\Resolver;
+namespace Ronangr1\WhoDidZis\Service;
 
-interface ActorResolverInterface
+class Summary
 {
-    public function getCurrentActor();
+
 }

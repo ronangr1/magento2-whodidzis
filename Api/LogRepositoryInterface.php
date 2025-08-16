@@ -6,7 +6,11 @@
 
 namespace Ronangr1\WhoDidZis\Api;
 
+use Ronangr1\WhoDidZis\Api\Data\LogInterface;
+
 interface LogRepositoryInterface
 {
+    public function get(string $entityId): LogInterface;
 
+    public function save(LogInterface $log);
 }

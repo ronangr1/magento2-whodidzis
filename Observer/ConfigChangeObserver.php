@@ -3,24 +3,22 @@
  * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 declare(strict_types=1);
 
 namespace Ronangr1\WhoDidZis\Observer;
 
+use Exception;
 use Magento\Config\Model\Config;
-use Magento\Config\Model\Config\Structure as ConfigStructure;
-use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory as ConfigCollectionFactory;
 use Magento\Config\Model\ConfigFactory;
+use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory as ConfigCollectionFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 use Ronangr1\WhoDidZis\Api\Data\LogInterfaceFactory;
 use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
 use Ronangr1\WhoDidZis\Model\Event\Type;
-use Ronangr1\WhoDidZis\Resolver\ActorResolver;
+use Ronangr1\WhoDidZis\Resolver\ActorResolverInterface;
 use Ronangr1\WhoDidZis\Service\Log\FormatterHandler;
 
 class ConfigChangeObserver implements ObserverInterface
@@ -32,7 +30,7 @@ class ConfigChangeObserver implements ObserverInterface
         private readonly LogRepositoryInterface $logRepository,
         private readonly LogInterfaceFactory $logFactory,
         private readonly FormatterHandler $formatterHandler,
-        private readonly ActorResolver $actorResolver,
+        private readonly ActorResolverInterface $actorResolver,
         private readonly LoggerInterface $logger,
     ) {
     }
@@ -50,7 +48,7 @@ class ConfigChangeObserver implements ObserverInterface
         $this->flattenConfigGroups($newData, $configData['groups'], $section);
 
         if (empty($newData)) {
-            $this->logger->info('[WhoDidZis] No new data found after flattening.');
+            $this->logger->info('No new data found after flattening.');
             return;
         }
 
@@ -75,7 +73,6 @@ class ConfigChangeObserver implements ObserverInterface
             $originalData[$item->getPath()] = $item->getValue();
         }
 
-        /** @var \Magento\Config\Model\Config $object */
         $object = $this->configFactory->create();
         $object->setSection($section);
         $object->setWebsite($this->request->getParam('website'));
@@ -99,8 +96,8 @@ class ConfigChangeObserver implements ObserverInterface
             $log->setEventType(Type::TYPE_UPDATED);
             $log->setChangesSummary($logContent);
             $this->logRepository->save($log);
-        } catch (\Exception $e) {
-            $this->logger->critical('[WhoDidZis] Failed to log config change: ' . $e->getMessage());
+        } catch (Exception $e) {
+            $this->logger->critical('Failed to log config change: ' . $e->getMessage());
         }
     }
 

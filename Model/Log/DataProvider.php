@@ -33,7 +33,7 @@ class DataProvider extends AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-    public function getData(): ?array
+    public function getData(): ?array 
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;

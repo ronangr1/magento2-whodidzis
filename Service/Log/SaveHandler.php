@@ -3,20 +3,18 @@
  * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 declare(strict_types=1);
 
 namespace Ronangr1\WhoDidZis\Service\Log;
 
+use Exception;
 use Magento\Framework\Model\AbstractModel;
-use Magento\Framework\Serialize\JsonConverter;
 use Psr\Log\LoggerInterface;
-use Ronangr1\WhoDidZis\Model\Actor\Type as ActorType;
-use Ronangr1\WhoDidZis\Model\Event\Type;
-use Ronangr1\WhoDidZis\Model\Formatter\FormatterInterface;
-use Ronangr1\WhoDidZis\Resolver\ActorResolverInterface;
 use Ronangr1\WhoDidZis\Api\Data\LogInterfaceFactory;
 use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
+use Ronangr1\WhoDidZis\Model\Event\Type;
+use Ronangr1\WhoDidZis\Resolver\ActorResolverInterface;
+use Ronangr1\WhoDidZis\Service\Log as LogService;
 
 class SaveHandler
 {
@@ -27,14 +25,14 @@ class SaveHandler
         private readonly LogInterfaceFactory $logFactory,
         private readonly LoggerInterface $logger,
         private readonly FormatterHandler $formatterHandler,
+        private readonly LogService $logService,
         private readonly array $deniedEntityTypes = [],
-        private readonly array $contextualDeniedEntityTypes = [],
     ) {
     }
 
     public function handle(AbstractModel $object, ?array $originalData, array $newData, bool $isObjectNew): void
     {
-        if (!$this->hasChanges($originalData, $newData, $isObjectNew)) {
+        if (!$this->logService->hasChanges($originalData, $newData, $isObjectNew)) {
             return;
         }
 
@@ -47,13 +45,6 @@ class SaveHandler
             return;
         }
 
-        if (in_array($entityType, $this->contextualDeniedEntityTypes)) {
-            $actor = $this->actorResolver->getCurrentActor();
-            if ($actor->getActorType() !== ActorType::ADMIN) {
-                return;
-            }
-        }
-
         $formatter = $this->formatterHandler->getFormatterForEntity($entityType);
         $logContent = $formatter->format($object, $originalData ?? [], $newData);
 
@@ -62,10 +53,8 @@ class SaveHandler
         }
 
         try {
-            $log = $this->logFactory->create();
-
             $actor = $this->actorResolver->getCurrentActor();
-
+            $log = $this->logFactory->create();
             $log->setEntityType($entityType);
             $log->setActorId($actor->getId());
             $log->setActorType($actor->getType());
@@ -78,25 +67,8 @@ class SaveHandler
                 $log->setEventType(Type::TYPE_UPDATED);
             }
             $this->logRepository->save($log);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->critical($e->getMessage());
         }
-    }
-
-    private function hasChanges(?array $originalData, array $newData, bool $isObjectNew): bool
-    {
-        if ($isObjectNew) {
-            return true;
-        }
-
-        if ($originalData === null) {
-            return true;
-        }
-
-        $ignoredKeys = ['updated_at' => true];
-        $filteredOriginalData = array_diff_key($originalData, $ignoredKeys);
-        $filteredNewData = array_diff_key($newData, $ignoredKeys);
-
-        return $filteredOriginalData != $filteredNewData;
     }
 }

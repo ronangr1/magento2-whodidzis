@@ -3,19 +3,19 @@
  * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
-
-declare(strict_types=1);
+declare(strict_types=1); 
 
 namespace Ronangr1\WhoDidZis\Controller\Adminhtml\Log;
 
+use Exception;
+use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
-use Ronangr1\WhoDidZis\Controller\Adminhtml\Log;
 use Ronangr1\WhoDidZis\Service\Cache;
 
-class Revert extends Log
+class Revert extends Action
 {
     public function __construct(
         private readonly LogRepositoryInterface $configRecordRepository,
@@ -45,7 +45,7 @@ class Revert extends Log
                     $this->messageManager->addSuccessMessage(__('You reverted the record.'));
                 }
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
                 return $resultRedirect->setPath('*/*/edit', ['entity_id' => $id]);
             }

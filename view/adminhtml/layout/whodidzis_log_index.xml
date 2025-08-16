@@ -6,7 +6,15 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-	<body>
+	<head>
+        <css src="Ronangr1_WhoDidZis::css/prism.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <referenceBlock name="ronangr1.core.js.init">
+            <arguments>
+                <argument name="path" xsi:type="string">whodidzis/log/showdiff</argument>
+            </arguments>
+        </referenceBlock>
 		<referenceContainer name="content">
 			<uiComponent name="ronangr1_whodidzis_log_listing"/>
 		</referenceContainer>

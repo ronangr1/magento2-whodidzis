@@ -3,21 +3,21 @@
  * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 declare(strict_types=1);
 
 namespace Ronangr1\WhoDidZis\Model;
 
+use Exception;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
 use Ronangr1\WhoDidZis\Api\Data\LogInterface;
 use Ronangr1\WhoDidZis\Api\Data\LogInterfaceFactory;
 use Ronangr1\WhoDidZis\Api\Data\LogSearchResultsInterface;
 use Ronangr1\WhoDidZis\Api\Data\LogSearchResultsInterfaceFactory;
+use Ronangr1\WhoDidZis\Api\LogRepositoryInterface;
 use Ronangr1\WhoDidZis\Model\ResourceModel\Log as ResourceLog;
 use Ronangr1\WhoDidZis\Model\ResourceModel\Log\CollectionFactory as LogCollectionFactory;
 
@@ -35,11 +35,12 @@ class LogRepository implements LogRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function save(LogInterface $Log): LogInterface
+    public function save(LogInterface $log
+    ): LogInterface
     {
         try {
-            $this->resource->save($Log);
-        } catch (\Exception $exception) {
+            $this->resource->save($log);
+        } catch (Exception $exception) {
             throw new CouldNotSaveException(
                 __(
                     'Could not save the Log : %1',
@@ -47,17 +48,7 @@ class LogRepository implements LogRepositoryInterface
                 )
             );
         }
-        return $Log;
-    }
-
-    public function get(string $entityId): LogInterface
-    {
-        $Log = $this->LogFactory->create();
-        $this->resource->load($Log, $entityId);
-        if (!$Log->getId()) {
-            throw new NoSuchEntityException(__('Log with id "%1" does not exist.', $entityId));
-        }
-        return $Log;
+        return $log;
     }
 
     public function getList(
@@ -80,6 +71,11 @@ class LogRepository implements LogRepositoryInterface
         return $searchResults;
     }
 
+    public function deleteById(string $entityId): bool
+    {
+        return $this->delete($this->get($entityId));
+    }
+
     /**
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
@@ -89,7 +85,7 @@ class LogRepository implements LogRepositoryInterface
             $LogModel = $this->LogFactory->create();
             $this->resource->load($LogModel, $Log->getEntityId());
             $this->resource->delete($LogModel);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new CouldNotDeleteException(
                 __(
                     'Could not delete the Log: %1',
@@ -100,9 +96,14 @@ class LogRepository implements LogRepositoryInterface
         return true;
     }
 
-    public function deleteById(string $entityId): bool
+    public function get(string $entityId): LogInterface
     {
-        return $this->delete($this->get($entityId));
+        $Log = $this->LogFactory->create();
+        $this->resource->load($Log, $entityId);
+        if (!$Log->getId()) {
+            throw new NoSuchEntityException(__('Log with id "%1" does not exist.', $entityId));
+        }
+        return $Log;
     }
 }
 

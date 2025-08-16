@@ -17,16 +17,13 @@ class LogActions extends Column
 {
     private const URL_PATH_REVERT = 'configrecord/configrecord/revert';
 
-    protected $urlBuilder;
-
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
-        UrlInterface $urlBuilder,
+        protected UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
     ) {
-        $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -34,13 +31,20 @@ class LogActions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                if (isset($item['entity_id'])) {
+                if (isset($item['log_id'])) {
                     $item[$this->getData('name')] = [
+                        $item['log_id'] => [
+                            'label' => __('Show Changes'),
+                            'callback' => [
+                                'provider' => 'ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_columns.log_actions',
+                                'target' => 'openChanges',
+                            ],
+                        ],
                         'revert' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_REVERT,
                                 [
-                                    'entity_id' => $item['entity_id']
+                                    'entity_id' => $item['log_id']
                                 ]
                             ),
                             'label' => __('Revert'),

@@ -21,11 +21,6 @@ class Log extends AbstractModel implements LogInterface, IdentityInterface
 
     protected $_eventPrefix = 'ronangr1_whodidzis_log';
 
-    protected function _construct(): void
-    {
-        $this->_init(LogResourceModel::class);
-    }
-
     public function getLogId(): ?int
     {
         $id = $this->getData(self::LOG_ID);
@@ -111,5 +106,10 @@ class Log extends AbstractModel implements LogInterface, IdentityInterface
     public function getIdentities(): array
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
+    }
+
+    protected function _construct(): void
+    {
+        $this->_init(LogResourceModel::class);
     }
 }
