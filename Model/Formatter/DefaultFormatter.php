@@ -14,12 +14,13 @@ class DefaultFormatter implements FormatterInterface
 {
     public function __construct(
         private readonly SerializerInterface $serializer,
+        private readonly array $ignoredKeys = [],
     ) {
     }
 
     public function format($object, array $originalData, array $newData): ?string
     {
-        $ignoredKeys = ['updated_at' => true, 'store_id' => true, 'form_key' => true, 'extension_attributes' => true, 'invoice' => true];
+        $ignoredKeys = $this->ignoredKeys;
 
         $filteredOriginalData = array_diff_key($originalData, $ignoredKeys);
         $filteredNewData = array_diff_key($newData, $ignoredKeys);
