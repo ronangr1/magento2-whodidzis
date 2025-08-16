@@ -43,11 +43,6 @@
 	</listingToolbar>
 	<columns name="ronangr1_whodidzis_log_columns">
 		<settings>
-			<editorConfig>
-				<param name="selectProvider" xsi:type="string">ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_columns.ids</param>
-				<param name="enabled" xsi:type="boolean">true</param>
-				<param name="indexField" xsi:type="string">log_id</param>
-			</editorConfig>
 			<childDefaults>
 				<param name="fieldAction" xsi:type="array">
 					<item name="provider" xsi:type="string">ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_columns_editor</item>
@@ -148,6 +143,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="diffUrl" xsi:type="string">whodidzis/log/summary</item>
+                    <item name="fieldClass" xsi:type="string">show-changes-action</item>
                 </item>
             </argument>
             <settings>

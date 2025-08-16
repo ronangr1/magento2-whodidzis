@@ -30,7 +30,7 @@ define([
                 innerScroll: true,
                 buttons: [{
                     text: $t('Close'),
-                    class: 'action-secondary',
+                    class: 'action-primary',
                     click: function () {
                         this.closeModal();
                     }

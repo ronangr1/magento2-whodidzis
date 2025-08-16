@@ -8,25 +8,10 @@ declare(strict_types=1);
 
 namespace Ronangr1\WhoDidZis\Ui\Component\Listing\Column;
 
-use Magento\Framework\UrlInterface;
-use Magento\Framework\View\Element\UiComponent\ContextInterface;
-use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 
 class LogActions extends Column
 {
-    private const URL_PATH_REVERT = 'configrecord/configrecord/revert';
-
-    public function __construct(
-        ContextInterface $context,
-        UiComponentFactory $uiComponentFactory,
-        protected UrlInterface $urlBuilder,
-        array $components = [],
-        array $data = []
-    ) {
-        parent::__construct($context, $uiComponentFactory, $components, $data);
-    }
-
     public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
@@ -40,19 +25,6 @@ class LogActions extends Column
                                 'target' => 'openChanges',
                             ],
                         ],
-                        'revert' => [
-                            'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_REVERT,
-                                [
-                                    'entity_id' => $item['log_id']
-                                ]
-                            ),
-                            'label' => __('Revert'),
-                            'confirm' => [
-                                'title' => __('Revert'),
-                                'message' => __('Are you sure you wan\'t to revert this record?')
-                            ]
-                        ]
                     ];
                 }
             }
