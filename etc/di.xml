@@ -64,7 +64,12 @@
                 <!-- Indexers -->
                 <item name="magento_indexer_state" xsi:type="string">Magento\Indexer\Model\Indexer\State</item>
                 <item name="magento_mview_state" xsi:type="string">Magento\Indexer\Model\Mview\View\State</item>
-                <item name="magento_framework_flag" xsi:type="string"> Magento\Framework\Flag</item>
+                <item name="magento_framework_flag" xsi:type="string">Magento\Framework\Flag</item>
+                <!-- Orders -->
+                <item name="magento_order_item" xsi:type="string">Magento\Sales\Model\Order\Item</item>
+                <item name="magento_order_invoice_item" xsi:type="string">Magento\Sales\Model\Order\Invoice\Item</item>
+                <item name="magento_order_payment" xsi:type="string">Magento\Sales\Model\Order\Payment</item>
+                <item name="magento_order_shipment_item" xsi:type="string">Magento\Sales\Model\Order\Shipment\Item</item>
             </argument>
         </arguments>
     </type>
