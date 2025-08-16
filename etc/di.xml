@@ -65,6 +65,7 @@
                 <item name="magento_indexer_state" xsi:type="string">Magento\Indexer\Model\Indexer\State</item>
                 <item name="magento_mview_state" xsi:type="string">Magento\Indexer\Model\Mview\View\State</item>
                 <item name="magento_framework_flag" xsi:type="string">Magento\Framework\Flag</item>
+                <item name="magento_catalog_rule_flag" xsi:type="string"> Magento\CatalogRule\Model\Flag</item>
                 <!-- Orders -->
                 <item name="magento_order_item" xsi:type="string">Magento\Sales\Model\Order\Item</item>
                 <item name="magento_order_invoice_item" xsi:type="string">Magento\Sales\Model\Order\Invoice\Item</item>
@@ -80,6 +81,20 @@
                 <item name="Magento\Catalog\Model\Category" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
                 <item name="Magento\Customer\Model\Customer" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
                 <item name="default" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\DefaultFormatter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ronangr1\WhoDidZis\Model\Formatter\DefaultFormatter">
+        <arguments>
+            <argument name="ignoredKeys" xsi:type="array">
+                <item name="updated_at" xsi:type="string">updated_at</item>
+                <item name="store_id" xsi:type="string">store_id</item>
+                <item name="form_key" xsi:type="string">form_key</item>
+                <item name="extensions_attribute" xsi:type="string">extensions_attribute</item>
+                <item name="invoice" xsi:type="string">invoice</item>
+                <item name="current_password" xsi:type="string">current_password</item>
+                <item name="password" xsi:type="string">password</item>
+                <item name="resource" xsi:type="string">resource</item>
             </argument>
         </arguments>
     </type>

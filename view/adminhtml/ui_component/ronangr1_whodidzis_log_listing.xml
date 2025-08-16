@@ -72,7 +72,7 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
-		<column name="entity_type">
+		<column name="entity_type" component="Magento_Ui/js/grid/columns/select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
@@ -80,33 +80,37 @@
                 </item>
             </argument>
 			<settings>
-				<filter>text</filter>
+                <filter>select</filter>
+                <options class="Ronangr1\WhoDidZis\Model\Config\Source\EntityType"/>
+                <dataType>select</dataType>
 				<label translate="true">Entity Type</label>
 			</settings>
 		</column>
-        <column name="event_type">
+        <column name="event_type" component="Magento_Ui/js/grid/columns/select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
                 </item>
             </argument>
             <settings>
-                <filter>text</filter>
+                <filter>select</filter>
+                <options class="Ronangr1\WhoDidZis\Model\Config\Source\EventType"/>
+                <dataType>select</dataType>
                 <label translate="true">Event Type</label>
             </settings>
         </column>
-		<column name="actor_type">
+		<column name="actor_type" component="Magento_Ui/js/grid/columns/select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
                     <item name="sortOrder" xsi:type="number">40</item>
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="number">200</item>
                 </item>
             </argument>
 			<settings>
-				<filter>text</filter>
+                <filter>select</filter>
+                <options class="Ronangr1\WhoDidZis\Model\Config\Source\ActorType"/>
+                <dataType>select</dataType>
 				<label translate="true">Actor Type</label>
 			</settings>
 		</column>
@@ -114,9 +118,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">-
                     <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">40</item>
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="number">200</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
                 </item>
             </argument>
             <settings>
@@ -144,6 +146,7 @@
                 <item name="config" xsi:type="array">
                     <item name="diffUrl" xsi:type="string">whodidzis/log/summary</item>
                     <item name="fieldClass" xsi:type="string">show-changes-action</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
                 </item>
             </argument>
             <settings>
