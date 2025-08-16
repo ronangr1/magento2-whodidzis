@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Ronangr1. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="whodidzis" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="999" translate="label">
+            <label>WhoDidZis</label>
+            <tab>ronangr1</tab>
+            <resource>Ronangr1_WhoDidZis::config_system</resource>
+            <group id="general" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>whodidzis/general/enable</config_path>
+                </field>
+            </group>
+            <group id="logging" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Logging</label>
+                <field id="enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log Customer Action</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>whodidzis/logging/log_customer_action</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

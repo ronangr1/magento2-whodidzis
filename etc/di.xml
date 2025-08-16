@@ -5,37 +5,76 @@
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Ronangr1\WhoDidZis\Logger\Handler">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ronangr1\WhoDidZis\Api\LogRepositoryInterface" type="Ronangr1\WhoDidZis\Model\LogRepository"/>
+    <preference for="Ronangr1\WhoDidZis\Api\Data\LogInterface" type="Ronangr1\WhoDidZis\Model\Log"/>
+    <preference for="Ronangr1\WhoDidZis\Api\Data\LogSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Ronangr1\WhoDidZis\Resolver\ActorResolverInterface" type="Ronangr1\WhoDidZis\Resolver\ActorResolver"/>
+    <preference for="Ronangr1\WhoDidZis\Model\Formatter\FormatterInterface" type="Ronangr1\WhoDidZis\Model\Formatter\DefaultFormatter"/>
+    <preference for="Ronangr1\WhoDidZis\Model\Formatter\FormatterInterface" type="Ronangr1\WhoDidZis\Model\Formatter\EavFormatter"/>
+    <virtualType name="Ronangr1\WhoDidZis\Model\ResourceModel\Log\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
-        </arguments>
-    </type>
-    <type name="Ronangr1\WhoDidZis\Logger\Logger">
-        <arguments>
-            <argument name="name" xsi:type="string">systemConfigChangesLogger</argument>
-            <argument name="handlers"  xsi:type="array">
-                <item name="system" xsi:type="object">Ronangr1\WhoDidZis\Logger\Handler</item>
-            </argument>
-        </arguments>
-    </type>
-    <preference for="Ronangr1\WhoDidZis\Api\ConfigRecordRepositoryInterface" type="Ronangr1\WhoDidZis\Model\ConfigRecordRepository"/>
-    <preference for="Ronangr1\WhoDidZis\Api\Data\ConfigRecordInterface" type="Ronangr1\WhoDidZis\Model\ConfigRecord"/>
-    <preference for="Ronangr1\WhoDidZis\Api\Data\ConfigRecordSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-    <virtualType name="Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">system_config_record</argument>
+            <argument name="mainTable" xsi:type="string">whodidzis_log</argument>
             <argument name="resourceModel" xsi:type="string">
-                Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\Collection
+                Ronangr1\WhoDidZis\Model\ResourceModel\Log\Collection
             </argument>
         </arguments>
     </virtualType>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="ronangr1_whodidzis_configrecord_listing_data_source" xsi:type="string">
-                    Ronangr1\WhoDidZis\Model\ResourceModel\ConfigRecord\Grid\Collection
+                <item name="ronangr1_whodidzis_log_listing_data_source" xsi:type="string">
+                    Ronangr1\WhoDidZis\Model\ResourceModel\Log\Grid\Collection
                 </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ronangr1\WhoDidZis\Resolver\ActorResolver">
+        <arguments>
+            <argument name="backendSession" xsi:type="object">Magento\Backend\Model\Auth\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\ResourceModel\Db\AbstractDb">
+        <plugin name="ronangr1_whodidzis_log_on_save" type="Ronangr1\WhoDidZis\Plugin\ResourceModel\LogOnSavePlugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Ronangr1\WhoDidZis\Service\Log\SaveHandler">
+        <arguments>
+            <argument name="deniedEntityTypes" xsi:type="array">
+                <!-- Sessions -->
+                <item name="magento_quote" xsi:type="string">Magento\Quote\Model\Quote</item>
+                <item name="magento_quote_item" xsi:type="string">Magento\Quote\Model\Quote\Item</item>
+                <item name="magento_quote_address" xsi:type="string">Magento\Quote\Model\Quote\Address</item>
+                <item name="magento_quote_payment" xsi:type="string">Magento\Quote\Model\Quote\Payment</item>
+                <item name="magento_customer_session" xsi:type="string">Magento\Customer\Model\Session</item>
+                <item name="magento_backend_session" xsi:type="string">Magento\Backend\Model\Session</item>
+                <item name="magento_checkout_session" xsi:type="string">Magento\Checkout\Model\Session</item>
+                <item name="magento_persistent_session" xsi:type="string">Magento\Persistent\Model\Session</item>
+                <item name="magento_security_session_info" xsi:type="string">Magento\Security\Model\AdminSessionInfo</item>
+                <!-- Ui Admin -->
+                <item name="magento_system_message" xsi:type="string">Magento\AdminNotification\Model\System\Message</item>
+                <item name="magento_ui_bookmark" xsi:type="string">Magento\Ui\Model\Bookmark</item>
+                <item name="magento_config" xsi:type="string">Magento\Config\Model\Config</item>
+                <item name="magento_config_value" xsi:type="string">Magento\Framework\App\Config\Value</item>
+                <item name="magento_theme_design" xsi:type="string">Magento\Theme\Model\Design\Backend\Theme</item>
+                <!-- Anti Recursive -->
+                <item name="ronangr1_whodidzis_log" xsi:type="string">Ronangr1\WhoDidZis\Model\Log</item>
+                <!-- Indexers -->
+                <item name="magento_indexer_state" xsi:type="string">Magento\Indexer\Model\Indexer\State</item>
+                <item name="magento_mview_state" xsi:type="string">Magento\Indexer\Model\Mview\View\State</item>
+                <item name="magento_framework_flag" xsi:type="string"> Magento\Framework\Flag</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ronangr1\WhoDidZis\Service\Log\FormatterHandler">
+        <arguments>
+            <argument name="formatters" xsi:type="array">
+                <item name="Magento\Catalog\Model\Product" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
+                <item name="Magento\Catalog\Model\Category" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
+                <item name="Magento\Customer\Model\Customer" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\EavFormatter</item>
+                <item name="default" xsi:type="object">Ronangr1\WhoDidZis\Model\Formatter\DefaultFormatter</item>
             </argument>
         </arguments>
     </type>

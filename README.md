@@ -39,7 +39,7 @@ bin/magento setup:upgrade
 
 ## Documentation
 
-Go to `Store > Config Records` to see who the fuck changed the configuration values.
+Go to `System > Activity > Records` to see who the fuck changed any values.
 
 ## Support
 

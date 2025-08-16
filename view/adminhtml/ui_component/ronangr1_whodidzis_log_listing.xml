@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Ronangr1. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>ronangr1_whodidzis_log_columns</spinner>
+		<deps>
+			<dep>ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="ronangr1_whodidzis_log_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">log_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Ronangr1_WhoDidZis::Log</aclResource>
+		<dataProvider name="ronangr1_whodidzis_log_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>log_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="ronangr1_whodidzis_log_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">log_id</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_listing.ronangr1_whodidzis_log_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>log_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="log_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">-
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="entity_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">-
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Entity Type</label>
+			</settings>
+		</column>
+        <column name="event_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">-
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Event Type</label>
+            </settings>
+        </column>
+		<column name="actor_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">-
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="number">200</item>
+                </item>
+            </argument>
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Actor Type</label>
+			</settings>
+		</column>
+        <column name="actor_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">-
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="number">200</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Actor Name</label>
+            </settings>
+        </column>
+		<column name="created_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">-
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Created At</label>
+			</settings>
+		</column>
+        <actionsColumn name="log_actions"
+                       class="Ronangr1\WhoDidZis\Ui\Component\Listing\Column\LogActions"
+                       component="Ronangr1_WhoDidZis/js/grid/columns/changes-actions"
+        >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="diffUrl" xsi:type="string">whodidzis/log/summary</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>log_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+                <bodyTmpl>ui/grid/cells/actions</bodyTmpl>
+            </settings>
+        </actionsColumn>
+	</columns>
+</listing>
