@@ -71,6 +71,9 @@
                 <item name="magento_order_invoice_item" xsi:type="string">Magento\Sales\Model\Order\Invoice\Item</item>
                 <item name="magento_order_payment" xsi:type="string">Magento\Sales\Model\Order\Payment</item>
                 <item name="magento_order_shipment_item" xsi:type="string">Magento\Sales\Model\Order\Shipment\Item</item>
+                <!-- Misc -->
+                <item name="magento_backend_array_serialized" xsi:type="string">Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</item>
+                <item name="magento_backend_locale_timezone" xsi:type="string">Magento\Config\Model\Config\Backend\Locale\Timezone</item>
             </argument>
         </arguments>
     </type>

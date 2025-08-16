@@ -26,8 +26,8 @@ class DefaultFormatter implements FormatterInterface
         $filteredNewData = array_diff_key($newData, $ignoredKeys);
 
         // Array conversion
-        $filteredOriginalData = self::stringifyArrayValues($filteredOriginalData);
-        $filteredNewData = self::stringifyArrayValues($filteredNewData);
+        $filteredOriginalData = $this->stringifyArrayValues($filteredOriginalData);
+        $filteredNewData = $this->stringifyArrayValues($filteredNewData);
 
         // DateTime conversion
         $filteredOriginalData = self::stringifyDateTimes($filteredOriginalData);
@@ -42,11 +42,11 @@ class DefaultFormatter implements FormatterInterface
         return $this->serializer->serialize($diff);
     }
 
-    private static function stringifyArrayValues(array $data): array
+    private function stringifyArrayValues(array $data): array
     {
         foreach ($data as $k => $v) {
             if (is_array($v)) {
-                $data[$k] = json_encode($v);
+                $data[$k] = $this->serializer->serialize($v);
             }
         }
         return $data;
